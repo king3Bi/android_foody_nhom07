@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:padding="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:hint="@string/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:hint="@string/price_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:hint="@string/price_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RadioGroup
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:text="@string/delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    android:text="@string/no_delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RadioGroup>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/open"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="@null"/>
+
+                <Button
+                    android:layout_marginStart="5dp"
+                    android:text="@string/close"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="@null"/>
+            </LinearLayout>
+
+            <ImageView
+                android:scaleType="centerCrop"
+               android:src="@drawable/addimg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:hint="@string/branches"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <ImageButton
+                    android:src="@drawable/ic_baseline_add_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <ImageView
+                android:scaleType="centerCrop"
+                android:src="@drawable/addimg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/add_img_mini"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"/>
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/add_img_mini"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"/>
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/add_img_mini"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"/>
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/add_img_mini"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"/>
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/add_img_mini"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/add_img_mini"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"/>
+
+               <LinearLayout
+                   android:layout_weight="1"
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"/>
+
+                   <LinearLayout
+                       android:orientation="horizontal"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+
+                       <EditText
+                           android:layout_weight="1"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"/>
+
+                       <Spinner
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content">
+
+                       </Spinner>
+
+                   </LinearLayout>
+
+               </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:backgroundTint="@color/grey"
+                android:text="@string/add_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:textColor="@color/black"
+                android:backgroundTint="@color/yellow"
+                android:text="@string/add_quan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
