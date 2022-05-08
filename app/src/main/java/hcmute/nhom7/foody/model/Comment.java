@@ -1,6 +1,9 @@
 package hcmute.nhom7.foody.model;
 
 public class Comment {
+    private int userId;
+    private int foodId;
+    private int rate;
     private String avatar;
     private String username;
     private String title;

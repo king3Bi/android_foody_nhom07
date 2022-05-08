@@ -2,6 +2,7 @@ package hcmute.nhom7.foody.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.model.Quan;
+import hcmute.nhom7.foody.utils.ImageUtils;
 import hcmute.nhom7.foody.view.DetailActivity;
 import hcmute.nhom7.foody.view.home.fragment.RecentFragment;
 
@@ -47,8 +49,10 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
         Quan quan = this.quanList.get(position);
 
         int imageResId = this.getDrawableResIdByName(quan.getImage());
+        Bitmap imgResBitMap = ImageUtils.decodeImg(quan.getImage());
 
-        holder.imgQuan.setImageResource(imageResId);
+//        holder.imgQuan.setImageResource(imageResId);
+        holder.imgQuan.setImageBitmap(imgResBitMap);
         holder.txtTenQuan.setText(quan.getName());
         holder.txtComment.setText(quan.getComment());
         holder.txtType.setText(quan.getType());

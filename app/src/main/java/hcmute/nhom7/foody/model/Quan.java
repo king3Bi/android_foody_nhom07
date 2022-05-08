@@ -6,10 +6,20 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class Quan implements Parcelable {
+    private int id;
     private String image;
     private String name;
     private String comment;
     private String type;
+    private String address;
+
+    public Quan(int id, String image, String name, String comment, String type) {
+        this.id = id;
+        this.image = image;
+        this.name = name;
+        this.comment = comment;
+        this.type = type;
+    }
 
     public Quan(String image, String name, String comment, String type) {
         this.image = image;
@@ -36,6 +46,14 @@ public class Quan implements Parcelable {
             return new Quan[size];
         }
     };
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getType() {
         return type;

@@ -1,6 +1,7 @@
 package hcmute.nhom7.foody.model;
 
 public class MonAn {
+    private int id;
     private String image;
     private String tenMonAn;
     private String moTa;

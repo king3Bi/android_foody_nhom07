@@ -1,6 +1,7 @@
 package hcmute.nhom7.foody.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.model.Comment;
 import hcmute.nhom7.foody.model.MonAn;
 import hcmute.nhom7.foody.model.Quan;
+import hcmute.nhom7.foody.utils.ImageUtils;
 import hcmute.nhom7.foody.view.DetailActivity;
 
 public class ItemMenuAdapter extends RecyclerView.Adapter<ItemMenuAdapter.ViewHolder> {
@@ -43,12 +45,15 @@ public class ItemMenuAdapter extends RecyclerView.Adapter<ItemMenuAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MonAn monAn = this.monAnList.get(position);
 
-        int imageResId = this.getDrawableResIdByName(monAn.getImage());
+//        int imageResId = this.getDrawableResIdByName(monAn.getImage());
+        Bitmap imgBitmap = ImageUtils.decodeImg(monAn.getImage());
 
-        holder.imgMonAn.setImageResource(imageResId);
+//        holder.imgMonAn.setImageResource(imageResId);
+        holder.imgMonAn.setImageBitmap(imgBitmap);
+        System.out.println("Ten mon an: " + monAn.getTenMonAn());
         holder.txtTenMonAn.setText(monAn.getTenMonAn());
         holder.txtMoTa.setText(monAn.getMoTa());
-        holder.txtGia.setText(monAn.getGia());
+        holder.txtGia.setText(monAn.getGia() +" VNĐ");
 
     }
 

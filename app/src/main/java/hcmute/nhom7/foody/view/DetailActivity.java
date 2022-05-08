@@ -1,5 +1,6 @@
 package hcmute.nhom7.foody.view;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,14 +24,17 @@ import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.adapter.CustomRecyclerViewAdapter;
 import hcmute.nhom7.foody.adapter.ItemCommentAdapter;
 import hcmute.nhom7.foody.adapter.ItemMenuAdapter;
+import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.model.Comment;
 import hcmute.nhom7.foody.model.MonAn;
 import hcmute.nhom7.foody.model.Quan;
+import hcmute.nhom7.foody.utils.ImageUtils;
 import hcmute.nhom7.foody.view.home.fragment.RecentFragment;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String LOG_TAG = "AndroidExample";
     private RecyclerView recyclerView, recyclerviewProfile;
+    private Database db;
     List<Comment> itemList;
     TextView txtTenQuan, txtTitleToolbar;
     ImageView imgQuan;
@@ -43,6 +47,9 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        db = new Database(this);
+        List<MonAn> foods = db.getAllFood();
 
         quan = (Quan) getIntent().getParcelableExtra("quanan");
 
@@ -69,7 +76,7 @@ public class DetailActivity extends AppCompatActivity {
         recyclerviewProfile = findViewById(R.id.recyclerviewMenu);
         recyclerviewProfile.setHasFixedSize(true);
         recyclerviewProfile.setLayoutManager(new LinearLayoutManager(this));
-        ItemMenuAdapter menuAdapter =  new ItemMenuAdapter(this, getListMonAn());
+        ItemMenuAdapter menuAdapter =  new ItemMenuAdapter(this, foods);
         recyclerviewProfile.setAdapter(menuAdapter);
 
     }
@@ -90,9 +97,12 @@ public class DetailActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        Bitmap imgBitMap = ImageUtils.decodeImg(quan.getImage());
+
         txtTenQuan.setText(quan.getName());
         txtTitleToolbar.setText(quan.getName());
-        imgQuan.setImageResource(getDrawableResIdByName(quan.getImage()));
+//        imgQuan.setImageResource(getDrawableResIdByName(quan.getImage()));
+        imgQuan.setImageBitmap(imgBitMap);
         if(quan.getType().equals(getString(R.string.Delivery))){
             layoutMenu.setVisibility(View.VISIBLE);
         }

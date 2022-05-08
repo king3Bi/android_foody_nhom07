@@ -51,8 +51,7 @@
         </activity>
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.SignupActivity" />
-        <activity android:name=".view.ThemQuanAnActivity"
-            >
+        <activity android:name=".view.ThemQuanAnActivity">
         </activity>
     </application>
 
