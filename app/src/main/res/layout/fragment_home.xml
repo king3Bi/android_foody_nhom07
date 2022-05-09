@@ -25,13 +25,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/imageviewSearch"
-                    app:srcCompat="@drawable/search_icon"
-                    android:layout_weight="1"
+                <LinearLayout
+                    android:id="@+id/layoutImageViewSearch"
+                    android:weightSum="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:id="@+id/imageviewSearch"
+                        app:srcCompat="@drawable/search_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
 
                 <EditText
                     android:layout_gravity="center"

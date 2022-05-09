@@ -2,6 +2,7 @@
     <string name="app_name">Foody</string>
     <string name="version">Phiên bản</string>
     <string name="load">Đang tải...</string>
+    <string name="fullName">Họ tên</string>
     <string name="email">Email</string>
     <string name="password">Mật khẩu</string>
     <string name="login">Đăng nhập</string>

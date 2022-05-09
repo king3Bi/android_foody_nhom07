@@ -12,11 +12,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.maps.SupportMapFragment;
 
 import hcmute.nhom7.foody.R;
+import hcmute.nhom7.foody.model.User;
 import hcmute.nhom7.foody.view.fragment.MoreFragment;
 import hcmute.nhom7.foody.view.home.HomeFragment;
 import hcmute.nhom7.foody.view.profile.fragment.ActivitiesFragment;
@@ -25,6 +28,8 @@ import hcmute.nhom7.foody.view.profile.fragment.PhotoVideoFragment;
 
 public class ProfileActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
+    private User user;
+    TextView textViewUsername;
     RadioGroup radioGroup;
     RadioButton rdActivities, rdPhotoVideo, rdCollections;
     Toolbar toolbar;
@@ -34,6 +39,11 @@ public class ProfileActivity extends AppCompatActivity implements RadioGroup.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         replaceFragment(new ActivitiesFragment());
+
+        user = (User) getIntent().getSerializableExtra("user");
+
+        textViewUsername = findViewById(R.id.textViewUsernameProfile);
+        textViewUsername.setText(user.getHoTen());
 
         rdActivities = (RadioButton) findViewById(R.id.radioActivities);
         rdPhotoVideo = (RadioButton) findViewById(R.id.radioPhotoVideo);

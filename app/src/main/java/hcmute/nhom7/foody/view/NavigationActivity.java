@@ -1,5 +1,6 @@
 package hcmute.nhom7.foody.view;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ import hcmute.nhom7.foody.view.saved.SavedFragment;
 
 public class NavigationActivity extends AppCompatActivity {
 
+    private User user;
     LayoutNavigationBinding binding;
     Database db;
 
@@ -31,6 +33,13 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = new Database(this);
+
+        user = (User) getIntent().getSerializableExtra("user");
+
+        if (user == null) {
+            Intent intent = new Intent(NavigationActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
 
 //        insertQuanData();
 //        insertMonAnData();
@@ -46,21 +55,21 @@ public class NavigationActivity extends AppCompatActivity {
 
         binding = LayoutNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment(db));
+        replaceFragment(new HomeFragment(db, user));
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.menu_home:
-                    replaceFragment(new HomeFragment(db));
+                    replaceFragment(new HomeFragment(db, user));
                     break;
                 case R.id.menu_saved:
-                    replaceFragment(new SavedFragment());
+                    replaceFragment(new SavedFragment(db, user));
                     break;
                 case R.id.menu_history:
                     replaceFragment(new HistoryFragment());
                     break;
                 case R.id.menu_more:
-                    replaceFragment(new MoreFragment());
+                    replaceFragment(new MoreFragment(db, user));
                     break;
 
             }

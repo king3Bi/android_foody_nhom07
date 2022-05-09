@@ -28,6 +28,7 @@ import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.model.Comment;
 import hcmute.nhom7.foody.model.MonAn;
 import hcmute.nhom7.foody.model.Quan;
+import hcmute.nhom7.foody.model.User;
 import hcmute.nhom7.foody.utils.ImageUtils;
 import hcmute.nhom7.foody.view.home.fragment.RecentFragment;
 

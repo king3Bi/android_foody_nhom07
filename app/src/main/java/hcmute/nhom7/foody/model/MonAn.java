@@ -7,6 +7,14 @@ public class MonAn {
     private String moTa;
     private String gia;
 
+    public MonAn(int id, String image, String tenMonAn, String moTa, String gia) {
+        this.id = id;
+        this.image = image;
+        this.tenMonAn = tenMonAn;
+        this.moTa = moTa;
+        this.gia = gia;
+    }
+
     public MonAn(String image, String tenMonAn, String moTa, String gia) {
         this.image = image;
         this.tenMonAn = tenMonAn;
@@ -44,5 +52,14 @@ public class MonAn {
 
     public void setGia(String gia) {
         this.gia = gia;
+    }
+
+    @Override
+    public String toString() {
+        return "MonAn{" +
+                "id=" + id +
+                ", tenMonAn='" + tenMonAn + '\'' +
+                ", gia='" + gia + '\'' +
+                '}';
     }
 }

@@ -15,6 +15,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.adapter.ViewPagerAdapterHome;
 import hcmute.nhom7.foody.adapter.ViewPagerAdapterSaved;
+import hcmute.nhom7.foody.database.SavedDAO;
+import hcmute.nhom7.foody.model.User;
 
 public class SavedFragment extends Fragment {
 
@@ -22,6 +24,13 @@ public class SavedFragment extends Fragment {
     private ViewPager2 mViewPager;
     private View mView;
     private ViewPagerAdapterSaved adapterSaved;
+    private SavedDAO savedDAO;
+    private User user;
+
+    public SavedFragment(SavedDAO savedDAO, User user) {
+        this.savedDAO = savedDAO;
+        this.user = user;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

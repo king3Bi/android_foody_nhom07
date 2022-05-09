@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -19,8 +21,11 @@ import java.util.List;
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.adapter.ViewPagerAdapterHome;
 import hcmute.nhom7.foody.database.Database;
+import hcmute.nhom7.foody.database.HomeDAO;
 import hcmute.nhom7.foody.database.QuanDAO;
+import hcmute.nhom7.foody.model.MonAn;
 import hcmute.nhom7.foody.model.Quan;
+import hcmute.nhom7.foody.model.User;
 
 public class HomeFragment extends Fragment {
 
@@ -28,12 +33,15 @@ public class HomeFragment extends Fragment {
     private ViewPager2 mViewPager;
     private View mView;
     private EditText mEdtSearchText;
+    private LinearLayout layoutImageViewSearch;
     private ViewPagerAdapterHome adapterHome;
-    private QuanDAO quanDAO;
+    private HomeDAO homeDAO;
+    private User user;
     private List<Quan> quans;
 
-    public HomeFragment(QuanDAO quanDAO) {
-        this.quanDAO = quanDAO;
+    public HomeFragment(HomeDAO homeDAO, User user) {
+        this.homeDAO = homeDAO;
+        this.user = user;
     }
 
     @Override
@@ -41,7 +49,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        quans = quanDAO.getAllQuan();
+        quans = homeDAO.getAllQuan();
 
         mTabLayout = mView.findViewById(R.id.tablayoutHome);
         mViewPager = mView.findViewById(R.id.viewpagerHome);
@@ -59,6 +67,17 @@ public class HomeFragment extends Fragment {
                     break;
             }
         }).attach();
+
+        layoutImageViewSearch = mView.findViewById(R.id.layoutImageViewSearch);
+        layoutImageViewSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String keyWord = mEdtSearchText.getText().toString();
+                List<MonAn> resultSearch = homeDAO.searchMonAn(keyWord);
+                resultSearch.forEach(System.out::println);
+            }
+        });
+
         return mView;
     }
 }

@@ -1,6 +1,8 @@
 package hcmute.nhom7.foody.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id;
     private String fullName;
     private String email;

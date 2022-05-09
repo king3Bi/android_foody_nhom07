@@ -1,6 +1,5 @@
 package hcmute.nhom7.foody.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,8 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
-import com.google.android.gms.common.util.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,9 +18,11 @@ import java.util.List;
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.model.MonAn;
 import hcmute.nhom7.foody.model.Quan;
+import hcmute.nhom7.foody.model.Saved;
 import hcmute.nhom7.foody.model.User;
 
-public class Database extends SQLiteOpenHelper implements UserDAO, QuanDAO, FoodDAO {
+public class Database extends SQLiteOpenHelper
+        implements UserDAO, QuanDAO, FoodDAO, SavedDAO, MoreDAO, HomeDAO, LoginDAO, SignupDAO {
     public static final String DATABASE_NAME = "foody_db.db";
     public static final int VERSION= 1;
     private Context context;
@@ -241,6 +240,72 @@ public class Database extends SQLiteOpenHelper implements UserDAO, QuanDAO, Food
         try {
             sqLiteDatabase.execSQL(sql,
                     new String[] {monAn.getTenMonAn(), monAn.getImage(), monAn.getMoTa(), monAn.getGia(), "1"});
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public List<Saved> getAllSaved() {
+        return null;
+    }
+
+    @Override
+    public List<Saved> getAllFoodSaved() {
+        return null;
+    }
+
+    @Override
+    public List<Saved> getAllRestaurantSaved() {
+        return null;
+    }
+
+    @Override
+    public List<MonAn> searchMonAn(String keyWord) {
+        List<MonAn> foods = new ArrayList<>();
+
+        String formatKeyWord = String.format("%%%s%%", keyWord);
+
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String sql = "SELECT * FROM foods WHERE name LIKE ?";
+        Cursor result = sqLiteDatabase.rawQuery(sql, new String[]{formatKeyWord});
+
+        while (result.moveToNext()) {
+            int id = result.getInt(0);
+            String name = result.getString(1);
+            String image = result.getString(2);
+            String description = result.getString(3);
+            Double price = result.getDouble(4);
+            foods.add(new MonAn(id, image, name, description, Double.toString(price)));
+        }
+
+        return  foods;
+    }
+
+    @Override
+    public boolean checkExistsEmail(String email) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String sql = "SELECT email FROM users WHERE email = ?";
+        Cursor result = sqLiteDatabase.rawQuery(sql, new String[]{email});
+
+        if (result.moveToNext()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean signUp(String fullName, String email, String password) {
+        String sql = "INSERT INTO users(full_name, email, password) " +
+                "VALUES(?, ?, ?)";
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        try {
+            sqLiteDatabase.execSQL(sql,
+                    new String[] {fullName, email, password});
         } catch (Exception e) {
             e.printStackTrace();
             return false;
