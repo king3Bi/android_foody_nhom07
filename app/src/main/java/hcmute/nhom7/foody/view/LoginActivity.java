@@ -1,6 +1,7 @@
 package hcmute.nhom7.foody.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,17 @@ public class LoginActivity extends AppCompatActivity {
 
         loginDAO = new Database(this);
 
+        SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
+
+        String email = sp1.getString("email", null);
+        String password = sp1.getString("password", null);
+
+        System.out.println("Login info: " + email + " " + password);
+
+        if (email != null && password != null) {
+            login(email, password);
+        }
+
         edtEmail = (EditText) findViewById(R.id.edittextEmail);
         edtPassword = (EditText) findViewById(R.id.edittextPassword);
 
@@ -50,15 +62,25 @@ public class LoginActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
 
-                User user = loginDAO.login(email, password);
-                if(user != null) {
-                    Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
-                    intent.putExtra("user", user);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Email hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
-                }
+                login(email, password);
             }
         });
+    }
+
+    private void login(String email, String password) {
+        User user = loginDAO.login(email, password);
+        if(user != null) {
+            SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+            SharedPreferences.Editor Ed=sp.edit();
+            Ed.putString("email", user.getEmail());
+            Ed.putString("password", user.getPassword());
+            Ed.commit();
+
+            Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        } else {
+            Toast.makeText(LoginActivity.this, "Email hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+        }
     }
 }

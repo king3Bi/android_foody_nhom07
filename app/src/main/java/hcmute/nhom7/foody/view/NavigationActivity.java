@@ -1,6 +1,7 @@
 package hcmute.nhom7.foody.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -32,6 +33,9 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         db = new Database(this);
 
         user = (User) getIntent().getSerializableExtra("user");
@@ -124,4 +128,5 @@ public class NavigationActivity extends AppCompatActivity {
         db.insertFood(monAn2);
         db.insertFood(monAn3);
     }
+
 }

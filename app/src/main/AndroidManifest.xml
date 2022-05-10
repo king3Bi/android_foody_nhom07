@@ -38,16 +38,17 @@
 
         <activity
             android:name=".view.MainActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".view.DetailActivity" />
-        <activity android:name=".view.NavigationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".view.DetailActivity" />
+        <activity android:name=".view.NavigationActivity"
+            android:exported="false">
+
         </activity>
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.SignupActivity" />

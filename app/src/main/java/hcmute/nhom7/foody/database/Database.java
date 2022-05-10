@@ -167,6 +167,25 @@ public class Database extends SQLiteOpenHelper
     }
 
     @Override
+    public boolean bookFood(User user, MonAn monAn, int quantity) {
+        String sql = "INSERT INTO bookings(user_id, food_id, quantity)" +
+                "VALUES(?, ?, ?)";
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        try {
+            sqLiteDatabase.execSQL(sql,
+                    new String[] {Integer.toString(user.getId()),
+                            Integer.toString(monAn.getId()), Integer.toString(quantity)});
+            System.out.println("Booking successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public List<MonAn> getAllFood() {
         List<MonAn> foods = new ArrayList<>();
 

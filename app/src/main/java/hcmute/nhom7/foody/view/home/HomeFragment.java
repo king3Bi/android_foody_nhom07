@@ -40,12 +40,10 @@ public class HomeFragment extends Fragment {
     private HomeDAO homeDAO;
     private User user;
     private List<Quan> quans;
-    private Context context;
 
     public HomeFragment(HomeDAO homeDAO, User user) {
         this.homeDAO = homeDAO;
         this.user = user;
-        this.context = getContext();
     }
 
     @Override
@@ -79,7 +77,7 @@ public class HomeFragment extends Fragment {
                 String keyWord = mEdtSearchText.getText().toString();
                 List<MonAn> resultSearch = homeDAO.searchMonAn(keyWord);
                 ListView listViewMonAnResult = mView.findViewById(R.id.listViewMonAnResult);
-                ResultSearchFoodAdapter adapter = new ResultSearchFoodAdapter(getContext(), R.layout.custom_layout_menu, resultSearch);
+                ResultSearchFoodAdapter adapter = new ResultSearchFoodAdapter(getContext(), R.layout.custom_layout_menu, resultSearch, homeDAO, user);
                 listViewMonAnResult.setAdapter(adapter);
             }
         });

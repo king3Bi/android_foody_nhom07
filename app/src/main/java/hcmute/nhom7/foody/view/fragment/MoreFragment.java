@@ -1,6 +1,8 @@
 package hcmute.nhom7.foody.view.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -54,6 +56,13 @@ public class MoreFragment extends Fragment {
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Context context = getContext();
+                SharedPreferences sp= context.getSharedPreferences("Login", context.MODE_PRIVATE);
+                SharedPreferences.Editor Ed=sp.edit();
+                Ed.putString("email", null);
+                Ed.putString("password", null);
+                Ed.commit();
+
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             }

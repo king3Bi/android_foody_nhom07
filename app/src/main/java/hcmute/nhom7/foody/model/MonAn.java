@@ -1,5 +1,9 @@
 package hcmute.nhom7.foody.model;
 
+import android.graphics.Bitmap;
+
+import hcmute.nhom7.foody.utils.ImageUtils;
+
 public class MonAn {
     private int id;
     private String image;
@@ -20,6 +24,14 @@ public class MonAn {
         this.tenMonAn = tenMonAn;
         this.moTa = moTa;
         this.gia = gia;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImage() {
@@ -61,5 +73,9 @@ public class MonAn {
                 ", tenMonAn='" + tenMonAn + '\'' +
                 ", gia='" + gia + '\'' +
                 '}';
+    }
+
+    public Bitmap getBitMapImg() {
+        return ImageUtils.decodeImg(this.image);
     }
 }
