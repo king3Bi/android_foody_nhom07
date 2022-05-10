@@ -47,26 +47,31 @@
                     android:textSize="15dp"
                     android:textColor="#9D9D9D"
                     android:hint="@string/find"
-                    android:layout_weight="8"
+                    android:layout_weight="9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:id="@+id/buttonPlace"
-                    android:gravity="right"
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="center_vertical"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:text="@string/places"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/buttonPlace"-->
+<!--                    android:gravity="right"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="15dp"-->
+<!--                    android:text="@string/places"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
 
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
+
+        <ListView
+            android:id="@+id/listViewMonAnResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayoutHome"

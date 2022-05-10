@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -19,6 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.List;
 
 import hcmute.nhom7.foody.R;
+import hcmute.nhom7.foody.adapter.ResultSearchFoodAdapter;
 import hcmute.nhom7.foody.adapter.ViewPagerAdapterHome;
 import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.database.HomeDAO;
@@ -38,10 +40,12 @@ public class HomeFragment extends Fragment {
     private HomeDAO homeDAO;
     private User user;
     private List<Quan> quans;
+    private Context context;
 
     public HomeFragment(HomeDAO homeDAO, User user) {
         this.homeDAO = homeDAO;
         this.user = user;
+        this.context = getContext();
     }
 
     @Override
@@ -74,7 +78,9 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 String keyWord = mEdtSearchText.getText().toString();
                 List<MonAn> resultSearch = homeDAO.searchMonAn(keyWord);
-                resultSearch.forEach(System.out::println);
+                ListView listViewMonAnResult = mView.findViewById(R.id.listViewMonAnResult);
+                ResultSearchFoodAdapter adapter = new ResultSearchFoodAdapter(getContext(), R.layout.custom_layout_menu, resultSearch);
+                listViewMonAnResult.setAdapter(adapter);
             }
         });
 
