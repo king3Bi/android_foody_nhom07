@@ -68,23 +68,59 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <ListView
-            android:id="@+id/listViewMonAnResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tablayoutHome"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/layoutContainResultSearch"
+            android:orientation="vertical"
+            android:visibility="gone"
             android:layout_height="wrap_content"
-            android:background="@color/grey"
-            app:tabIndicatorColor="@color/black"
-            app:tabSelectedTextColor="@color/black" />
+            android:layout_width="match_parent">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpagerHome"
+            <LinearLayout
+                android:weightSum="14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/btnBackHome"
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
+                    android:padding="0dp"
+                    android:background="@drawable/back_icon"
+                    app:backgroundTint="@null"/>
+                <TextView
+                    android:id="@+id/textKQTimKiem"
+                    android:gravity="center"
+                    android:textSize="25dp"
+                    android:text="Kết quả tìm kiếm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listViewMonAnResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayoutHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                app:tabIndicatorColor="@color/black"
+                app:tabSelectedTextColor="@color/black" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpagerHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

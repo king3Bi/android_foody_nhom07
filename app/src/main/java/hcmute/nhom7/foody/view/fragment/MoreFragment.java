@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.database.MoreDAO;
 import hcmute.nhom7.foody.model.User;
 import hcmute.nhom7.foody.view.LoginActivity;
+import hcmute.nhom7.foody.view.NavigationActivity;
 import hcmute.nhom7.foody.view.profile.ProfileActivity;
 
 public class MoreFragment extends Fragment {
@@ -28,10 +30,12 @@ public class MoreFragment extends Fragment {
     Button btnLogOut;
     private MoreDAO moreDAO;
     private User user;
+    private NavigationActivity activity;
 
     public MoreFragment(MoreDAO moreDAO, User user) {
         this.moreDAO = moreDAO;
         this.user = user;
+        this.activity = (NavigationActivity) getActivity();
     }
 
     @Override
@@ -42,14 +46,15 @@ public class MoreFragment extends Fragment {
         textViewUsername = mView.findViewById(R.id.textUsername);
         btnLogOut = mView.findViewById(R.id.buttonLogout);
 
-        textViewUsername.setText(this.user.getHoTen());
+        loadData();
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                activity.startProfile();
                 Intent intent = new Intent(getContext(), ProfileActivity.class);
                 intent.putExtra("user", user);
-                startActivity(intent);
+                startActivityForResult(intent, NavigationActivity.REQUEST_GET_PROFILE);
             }
         });
 
@@ -63,10 +68,16 @@ public class MoreFragment extends Fragment {
                 Ed.putString("password", null);
                 Ed.commit();
 
+                user = null;
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
         return mView;
+    }
+
+    private void loadData() {
+        textViewUsername.setText(this.user.getHoTen());
     }
 }

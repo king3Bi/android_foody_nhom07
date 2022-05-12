@@ -1,11 +1,12 @@
 package hcmute.nhom7.foody.model;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
+import hcmute.nhom7.foody.utils.ImageUtils;
 
-public class Quan implements Parcelable {
+public class Restaurant implements Parcelable {
     private int id;
     private String image;
     private String name;
@@ -13,7 +14,7 @@ public class Quan implements Parcelable {
     private String type;
     private String address;
 
-    public Quan(int id, String image, String name, String comment, String type) {
+    public Restaurant(int id, String image, String name, String comment, String type) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -21,29 +22,29 @@ public class Quan implements Parcelable {
         this.type = type;
     }
 
-    public Quan(String image, String name, String comment, String type) {
+    public Restaurant(String image, String name, String comment, String type) {
         this.image = image;
         this.name = name;
         this.comment = comment;
         this.type = type;
     }
 
-    protected Quan(Parcel in) {
+    protected Restaurant(Parcel in) {
         image = in.readString();
         name = in.readString();
         comment = in.readString();
         type = in.readString();
     }
 
-    public static final Creator<Quan> CREATOR = new Creator<Quan>() {
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
         @Override
-        public Quan createFromParcel(Parcel in) {
-            return new Quan(in);
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
         }
 
         @Override
-        public Quan[] newArray(int size) {
-            return new Quan[size];
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
         }
     };
 
@@ -102,5 +103,9 @@ public class Quan implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(comment);
         parcel.writeString(type);
+    }
+
+    public Bitmap getBitMapImg() {
+        return ImageUtils.decodeImg(this.image);
     }
 }

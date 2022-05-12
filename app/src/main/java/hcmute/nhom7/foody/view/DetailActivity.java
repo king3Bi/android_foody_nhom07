@@ -1,9 +1,7 @@
 package hcmute.nhom7.foody.view;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,10 +24,8 @@ import hcmute.nhom7.foody.adapter.ItemCommentAdapter;
 import hcmute.nhom7.foody.adapter.ItemMenuAdapter;
 import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.model.Comment;
-import hcmute.nhom7.foody.model.MonAn;
-import hcmute.nhom7.foody.model.Quan;
-import hcmute.nhom7.foody.model.User;
-import hcmute.nhom7.foody.utils.ImageUtils;
+import hcmute.nhom7.foody.model.Food;
+import hcmute.nhom7.foody.model.Restaurant;
 import hcmute.nhom7.foody.view.home.fragment.RecentFragment;
 
 public class DetailActivity extends AppCompatActivity {
@@ -41,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
     ImageView imgQuan;
     Toolbar toolbar;
     LinearLayout layoutMenu;
-    Quan quan;
+    Restaurant restaurant;
     CustomRecyclerViewAdapter customRecyclerViewAdapter;
     ItemMenuAdapter itemMenuAdapter;
 
@@ -50,9 +46,9 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         db = new Database(this);
-        List<MonAn> foods = db.getAllFood();
+        List<Food> foods = db.getAllFood();
 
-        quan = (Quan) getIntent().getParcelableExtra("quanan");
+        restaurant = (Restaurant) getIntent().getParcelableExtra("quanan");
 
         txtTenQuan = (TextView) findViewById(R.id.textNameQuan);
         imgQuan = (ImageView) findViewById(R.id.imageQuan);
@@ -98,13 +94,13 @@ public class DetailActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Bitmap imgBitMap = ImageUtils.decodeImg(quan.getImage());
+//        Bitmap imgBitMap = ImageUtils.decodeImg(quan.getImage());
 
-        txtTenQuan.setText(quan.getName());
-        txtTitleToolbar.setText(quan.getName());
+        txtTenQuan.setText(restaurant.getName());
+        txtTitleToolbar.setText(restaurant.getName());
 //        imgQuan.setImageResource(getDrawableResIdByName(quan.getImage()));
-        imgQuan.setImageBitmap(imgBitMap);
-        if(quan.getType().equals(getString(R.string.Delivery))){
+        imgQuan.setImageBitmap(restaurant.getBitMapImg());
+        if(restaurant.getType().equals(getString(R.string.Delivery))){
             layoutMenu.setVisibility(View.VISIBLE);
         }
     }
@@ -121,15 +117,15 @@ public class DetailActivity extends AppCompatActivity {
         return list;
     }
 
-    private List<MonAn> getListMonAn(){
-        List<MonAn> list = new ArrayList<MonAn>();
-        MonAn monAn1 = new MonAn("snowee", "Tên món ăn", "Mô tả", "Giá");
-        MonAn monAn2 = new MonAn("snowee", "Tên món ăn", "Mô tả", "Giá");
-        MonAn monAn3 = new MonAn("snowee", "Tên món ăn", "Mô tả", "Giá");
-
-        list.add(monAn1);
-        list.add(monAn2);
-        list.add(monAn3);
+    private List<Food> getListMonAn(){
+        List<Food> list = new ArrayList<Food>();
+//        MonAn monAn1 = new MonAn("snowee", "Tên món ăn", "Mô tả", 0);
+//        MonAn monAn2 = new MonAn("snowee", "Tên món ăn", "Mô tả", 0);
+//        MonAn monAn3 = new MonAn("snowee", "Tên món ăn", "Mô tả", 0);
+//
+//        list.add(monAn1);
+//        list.add(monAn2);
+//        list.add(monAn3);
 
         return list;
     }

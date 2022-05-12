@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import hcmute.nhom7.foody.R;
+import hcmute.nhom7.foody.database.PrepareData;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }
-            },2000);
+            },500);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

@@ -2,9 +2,6 @@ package hcmute.nhom7.foody.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,18 +18,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import hcmute.nhom7.foody.R;
-import hcmute.nhom7.foody.model.Quan;
-import hcmute.nhom7.foody.utils.ImageUtils;
+import hcmute.nhom7.foody.model.Restaurant;
 import hcmute.nhom7.foody.view.DetailActivity;
 import hcmute.nhom7.foody.view.home.fragment.RecentFragment;
 
 public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecyclerViewAdapter.ViewHolder> {
-    private List<Quan> quanList;
+    private List<Restaurant> restaurantList;
     private Context context;
 
-    public CustomRecyclerViewAdapter(Context context, List<Quan> quans){
+    public CustomRecyclerViewAdapter(Context context, List<Restaurant> restaurants){
         this.context = context;
-        this.quanList = quans;
+        this.restaurantList = restaurants;
     }
 
 
@@ -46,16 +42,16 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Quan quan = this.quanList.get(position);
+        Restaurant restaurant = this.restaurantList.get(position);
 
-        int imageResId = this.getDrawableResIdByName(quan.getImage());
-        Bitmap imgResBitMap = ImageUtils.decodeImg(quan.getImage());
+//        int imageResId = this.getDrawableResIdByName(quan.getImage());
+//        Bitmap imgResBitMap = ImageUtils.decodeImg(quan.getImage());
 
 //        holder.imgQuan.setImageResource(imageResId);
-        holder.imgQuan.setImageBitmap(imgResBitMap);
-        holder.txtTenQuan.setText(quan.getName());
-        holder.txtComment.setText(quan.getComment());
-        holder.txtType.setText(quan.getType());
+        holder.imgQuan.setImageBitmap(restaurant.getBitMapImg());
+        holder.txtTenQuan.setText(restaurant.getName());
+        holder.txtComment.setText(restaurant.getComment());
+        holder.txtType.setText(restaurant.getType());
         if(holder.txtType.getText().equals(context.getString(R.string.review))){
             holder.txtType.setBackgroundColor(context.getColor(R.color.blue));
         }else
@@ -65,12 +61,12 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("quanan", quan);
+                intent.putExtra("quanan", restaurant);
                 context.startActivity(intent);
             }
         });
 
-        if(quan.getType().equals(context.getString(R.string.delivery))){
+        if(restaurant.getType().equals(context.getString(R.string.delivery))){
 
         }
     }
@@ -85,14 +81,14 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
 
     @Override
     public int getItemCount() {
-        return quanList.size();
+        return restaurantList.size();
     }
 
     private void handleRecycleItemClick(RecyclerView recyclerView, View itemView){
         int itemPosition = recyclerView.getChildLayoutPosition(itemView);
-        Quan quan = this.quanList.get(itemPosition);
+        Restaurant restaurant = this.restaurantList.get(itemPosition);
 
-        Toast.makeText(this.context, quan.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.context, restaurant.getName(), Toast.LENGTH_SHORT).show();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

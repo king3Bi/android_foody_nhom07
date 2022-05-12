@@ -11,6 +11,11 @@ public class Saved {
         this.restaurantId = restaurantId;
     }
 
+    public Saved(int userId, int foodId) {
+        this.userId = userId;
+        this.foodId = foodId;
+    }
+
     public int getUserId() {
         return userId;
     }

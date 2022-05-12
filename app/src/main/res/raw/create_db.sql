@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS "users" (
-	"id"	INTEGER NOT NULL,
-	"full_name"	TEXT NOT NULL,
-	"email"	TEXT NOT NULL UNIQUE,
-	"password"	TEXT NOT NULL,
-	PRIMARY KEY("id" AUTOINCREMENT)
-);

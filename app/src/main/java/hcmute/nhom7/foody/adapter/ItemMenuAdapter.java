@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,20 +16,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import hcmute.nhom7.foody.R;
-import hcmute.nhom7.foody.model.Comment;
-import hcmute.nhom7.foody.model.MonAn;
-import hcmute.nhom7.foody.model.Quan;
+import hcmute.nhom7.foody.model.Food;
 import hcmute.nhom7.foody.utils.ImageUtils;
 import hcmute.nhom7.foody.view.DetailActivity;
 
 public class ItemMenuAdapter extends RecyclerView.Adapter<ItemMenuAdapter.ViewHolder> {
-    private List<MonAn> monAnList;
+    private List<Food> foodList;
     private Context context;
 
 
-    public ItemMenuAdapter(Context context,List<MonAn> monAns) {
+    public ItemMenuAdapter(Context context,List<Food> foods) {
         this.context = context;
-        this.monAnList = monAns;
+        this.foodList = foods;
     }
 
     @NonNull
@@ -43,36 +40,36 @@ public class ItemMenuAdapter extends RecyclerView.Adapter<ItemMenuAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MonAn monAn = this.monAnList.get(position);
+        Food food = this.foodList.get(position);
 
 //        int imageResId = this.getDrawableResIdByName(monAn.getImage());
-        Bitmap imgBitmap = ImageUtils.decodeImg(monAn.getImage());
+        Bitmap imgBitmap = ImageUtils.decodeImg(food.getImage());
 
 //        holder.imgMonAn.setImageResource(imageResId);
         holder.imgMonAn.setImageBitmap(imgBitmap);
-        System.out.println("Ten mon an: " + monAn.getTenMonAn());
-        holder.txtTenMonAn.setText(monAn.getTenMonAn());
-        holder.txtMoTa.setText(monAn.getMoTa());
-        holder.txtGia.setText(monAn.getGia() +" VNĐ");
+        System.out.println("Ten mon an: " + food.getName());
+        holder.txtTenMonAn.setText(food.getName());
+        holder.txtMoTa.setText(food.getDescription());
+        holder.txtGia.setText(food.getPriceString() +" VNĐ");
 
     }
 
 
     @Override
     public int getItemCount() {
-        int soComment = monAnList.size();
+        int soComment = foodList.size();
         if(soComment > 3){
             return 3;
         }else {
-            return monAnList.size();
+            return foodList.size();
         }
     }
 
     private void handleRecycleItemClick(RecyclerView recyclerView, View itemView){
         int itemPosition = recyclerView.getChildLayoutPosition(itemView);
-        MonAn monAn = this.monAnList.get(itemPosition);
+        Food food = this.foodList.get(itemPosition);
 
-        Toast.makeText(this.context, monAn.getTenMonAn(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.context, food.getName(), Toast.LENGTH_SHORT).show();
     }
 
     private int getDrawableResIdByName(String resName) {

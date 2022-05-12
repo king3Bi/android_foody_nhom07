@@ -5,6 +5,7 @@
     <string name="fullName">Họ tên</string>
     <string name="email">Email</string>
     <string name="password">Mật khẩu</string>
+    <string name="newPassword">Mật khẩu mới</string>
     <string name="login">Đăng nhập</string>
     <string name="forgotpassword">Quên mật khẩu?</string>
     <string name="or">Hoặc</string>
@@ -16,9 +17,12 @@
     <string name="passwordagain">Nhập lại mật khẩu</string>
     <string name="find">Tìm kiếm</string>
     <string name="recent">Mới đây</string>
+    <string name="food">Món ăn</string>
+    <string name="restautant">Quán ăn</string>
     <string name="nearby">Gần tôi</string>
     <string name="home">Trang chủ</string>
     <string name="saved">Đã lưu</string>
+    <string name="cart">Giỏ hàng</string>
     <string name="history">Lịch sử</string>
     <string name="more">Xem thêm</string>
     <string name="all">Tất cả</string>

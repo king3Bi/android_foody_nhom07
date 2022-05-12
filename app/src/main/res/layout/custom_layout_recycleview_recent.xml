@@ -38,6 +38,7 @@
                         android:background="@color/blue"
                         android:padding="2dp"
                         android:text="Review"
+                        android:visibility="gone"
                         android:textColor="@color/white" />
 
                 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.database.SignupDAO;
+import hcmute.nhom7.foody.model.User;
 
 public class SignupActivity extends AppCompatActivity {
     private EditText edtFullName, edtEmail, edtPassword, edtPasswordAgain;
@@ -40,7 +41,8 @@ public class SignupActivity extends AppCompatActivity {
                 String passwordAgain = edtPasswordAgain.getText().toString();
 
                 if (validateInput(fullName, email, password, passwordAgain)) {
-                    if (signupDAO.signUp(fullName, email, password)) {
+                    User newUser = new User(fullName, email, password);
+                    if (signupDAO.signUp(newUser)) {
                         Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                         Toast.makeText(SignupActivity.this, "Đăng ký tài khoản thành công", Toast.LENGTH_SHORT).show();
                         startActivity(intent);

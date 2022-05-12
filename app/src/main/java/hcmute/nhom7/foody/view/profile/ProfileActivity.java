@@ -1,62 +1,98 @@
 package hcmute.nhom7.foody.view.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
-
-import com.google.android.gms.maps.SupportMapFragment;
 
 import hcmute.nhom7.foody.R;
+import hcmute.nhom7.foody.database.Database;
+import hcmute.nhom7.foody.database.UserDAO;
 import hcmute.nhom7.foody.model.User;
-import hcmute.nhom7.foody.view.fragment.MoreFragment;
-import hcmute.nhom7.foody.view.home.HomeFragment;
-import hcmute.nhom7.foody.view.profile.fragment.ActivitiesFragment;
-import hcmute.nhom7.foody.view.profile.fragment.CollectionsFragment;
-import hcmute.nhom7.foody.view.profile.fragment.PhotoVideoFragment;
+import hcmute.nhom7.foody.view.LoginActivity;
+import hcmute.nhom7.foody.view.NavigationActivity;
 
-public class ProfileActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class ProfileActivity extends AppCompatActivity {
 
     private User user;
-    TextView textViewUsername;
-    RadioGroup radioGroup;
-    RadioButton rdActivities, rdPhotoVideo, rdCollections;
-    Toolbar toolbar;
+    private UserDAO userDAO;
+    EditText edtFullName, edtEmail, edtNewPassword, edtPasswordAgain;
+    Button btnUpdate, btnCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        replaceFragment(new ActivitiesFragment());
 
         user = (User) getIntent().getSerializableExtra("user");
+        userDAO = new Database(ProfileActivity.this);
 
-        textViewUsername = findViewById(R.id.textViewUsernameProfile);
-        textViewUsername.setText(user.getHoTen());
+        edtFullName = findViewById(R.id.edittextFullNameProfile);
+        edtEmail = findViewById(R.id.edittextEmailProfile);
+        edtNewPassword = findViewById(R.id.edittextNewPasswordProfile);
+        edtPasswordAgain = findViewById(R.id.edittextPasswordAgainProfile);
 
-        rdActivities = (RadioButton) findViewById(R.id.radioActivities);
-        rdPhotoVideo = (RadioButton) findViewById(R.id.radioPhotoVideo);
-        rdCollections = (RadioButton) findViewById(R.id.radioCollections);
-        radioGroup = findViewById(R.id.radioGroup);
-        toolbar = findViewById(R.id.toolbarProfile);
+        loadData();
 
-        radioGroup.setOnCheckedChangeListener(this);
+        btnCancel = findViewById(R.id.btnCancelProfile);
+        btnCancel.setOnClickListener(v -> {
+            setResult(RESULT_OK,
+                    new Intent().putExtra("user", user));
+            finish();
+        });
 
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        btnUpdate = findViewById(R.id.btnUpdateProfile);
+        btnUpdate.setOnClickListener(v -> {
+            String newPassword = edtNewPassword.getText().toString();
+            String passwordAgain = edtPasswordAgain.getText().toString();
+
+            String fullName = edtFullName.getText().toString();
+            String email = edtEmail.getText().toString();
+            User userCopy = new User(user.getId(), fullName, email);
+
+            if (isUpdatePassword()) {
+                if (!newPassword.equals(passwordAgain)) {
+                    Toast.makeText(ProfileActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                } else {
+                    userCopy.setPassword(newPassword);
+                    doAfterUpdate(userDAO.updateFullInfo(userCopy));
+                }
+            } else {
+                doAfterUpdate(userDAO.updateInfo(userCopy));
+            }
+        });
+
+    }
+
+    private void doAfterUpdate(boolean b) {
+        if (b) {
+
+            Toast.makeText(ProfileActivity.this, "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
+            user = userDAO.getUserById(user.getId());
+            loadData();
+        } else {
+            Toast.makeText(ProfileActivity.this, "Đã có lỗi xảy ra, vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void loadData() {
+        edtFullName.setText(user.getHoTen());
+        edtEmail.setText(user.getEmail());
+        edtNewPassword.getText().clear();
+        edtPasswordAgain.getText().clear();
+    }
+
+    private boolean isUpdatePassword() {
+        String newPassword = edtNewPassword.getText().toString();
+        String passwordAgain = edtPasswordAgain.getText().toString();
+
+        return !newPassword.isEmpty() || !passwordAgain.isEmpty();
     }
 
     @Override
@@ -71,29 +107,4 @@ public class ProfileActivity extends AppCompatActivity implements RadioGroup.OnC
         return true;
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        switch (i){
-            case R.id.radioActivities:
-                replaceFragment(new ActivitiesFragment());
-                break;
-            case R.id.radioPhotoVideo:
-                replaceFragment(new PhotoVideoFragment());
-                break;
-            case R.id.radioCollections:
-                replaceFragment(new CollectionsFragment());
-                break;
-
-            default:
-                replaceFragment(new ActivitiesFragment());
-                break;
-        }
-    }
-
-    private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayoutProfile, fragment);
-        fragmentTransaction.commit();
-    }
 }

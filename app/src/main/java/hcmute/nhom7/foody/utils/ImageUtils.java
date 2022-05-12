@@ -18,7 +18,6 @@ public class ImageUtils {
         String packageName = context.getPackageName();
 
         int resId = context.getResources().getIdentifier(resName, "drawable", packageName);
-        Log.i(RecentFragment.LOG_TAG, "Res Name: "+resName+"==> Res ID = "+resId);
         return resId;
     }
 

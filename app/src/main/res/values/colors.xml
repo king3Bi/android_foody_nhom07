@@ -17,4 +17,5 @@
     <color name="red_light">#EA4335</color>
     <color name="transparentWhite">#4Dffffff</color>
     <color name="orange">#E43510</color>
+    <color name="custom_orange">#ff802b</color>
 </resources>

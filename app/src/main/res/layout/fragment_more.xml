@@ -85,155 +85,155 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_gravity="center"
-            android:background="@color/grey" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="10dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@color/grey" />-->
 
-        <Button
-            android:id="@+id/buttonOrderHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/history"
-            android:drawableRight="@drawable/next"
-            android:fontFamily="sans-serif"
-            android:gravity="left|center"
-            android:padding="10dp"
-            android:text="Lịch sử đơn hàng"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            app:backgroundTint="@null" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonOrderHistory"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:drawableLeft="@drawable/history"-->
+<!--            android:drawableRight="@drawable/next"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:gravity="left|center"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Lịch sử đơn hàng"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16dp"-->
+<!--            app:backgroundTint="@null" />-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/grey" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:background="@color/grey" />-->
 
-        <Button
-            android:id="@+id/buttonBill"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/bill"
-            android:drawableRight="@drawable/next"
-            android:fontFamily="sans-serif"
-            android:gravity="left|center"
-            android:padding="10dp"
-            android:text="Hóa đơn"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            app:backgroundTint="@null" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonBill"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:drawableLeft="@drawable/bill"-->
+<!--            android:drawableRight="@drawable/next"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:gravity="left|center"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Hóa đơn"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16dp"-->
+<!--            app:backgroundTint="@null" />-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_gravity="center"
-            android:background="@color/grey" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@color/grey" />-->
 
-        <Button
-            android:id="@+id/buttonApp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/restaurant"
-            android:drawableRight="@drawable/next"
-            android:fontFamily="sans-serif"
-            android:gravity="left|center"
-            android:padding="10dp"
-            android:text="Ứng dụng cho chủ quán"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            app:backgroundTint="@null" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonApp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:drawableLeft="@drawable/restaurant"-->
+<!--            android:drawableRight="@drawable/next"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:gravity="left|center"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Ứng dụng cho chủ quán"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16dp"-->
+<!--            app:backgroundTint="@null" />-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/grey" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="10dp"-->
+<!--            android:background="@color/grey" />-->
 
-        <Button
-            android:id="@+id/buttonInvite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/add_user"
-            android:drawableRight="@drawable/next"
-            android:fontFamily="sans-serif"
-            android:gravity="left|center"
-            android:padding="10dp"
-            android:text="Mời bạn bè"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            app:backgroundTint="@null" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonInvite"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:drawableLeft="@drawable/add_user"-->
+<!--            android:drawableRight="@drawable/next"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:gravity="left|center"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Mời bạn bè"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16dp"-->
+<!--            app:backgroundTint="@null" />-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_gravity="center"
-            android:background="@color/grey" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@color/grey" />-->
 
-        <Button
-            android:id="@+id/buttonFeedback"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/email"
-            android:drawableRight="@drawable/next"
-            android:fontFamily="sans-serif"
-            android:gravity="left|center"
-            android:padding="10dp"
-            android:text="Góp ý"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            app:backgroundTint="@null" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonFeedback"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:drawableLeft="@drawable/email"-->
+<!--            android:drawableRight="@drawable/next"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:gravity="left|center"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Góp ý"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16dp"-->
+<!--            app:backgroundTint="@null" />-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/grey" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="10dp"-->
+<!--            android:background="@color/grey" />-->
 
-        <Button
-            android:id="@+id/buttonPolicy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/settings"
-            android:drawableRight="@drawable/next"
-            android:fontFamily="sans-serif"
-            android:gravity="left|center"
-            android:padding="10dp"
-            android:text="Chính sách quy định"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            app:backgroundTint="@null" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonPolicy"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:drawableLeft="@drawable/settings"-->
+<!--            android:drawableRight="@drawable/next"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:gravity="left|center"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Chính sách quy định"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16dp"-->
+<!--            app:backgroundTint="@null" />-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/grey" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:background="@color/grey" />-->
 
-        <Button
-            android:id="@+id/buttonSetting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/question"
-            android:drawableRight="@drawable/next"
-            android:fontFamily="sans-serif"
-            android:gravity="left|center"
-            android:padding="10dp"
-            android:text="Cài đặt"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            app:backgroundTint="@null" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonSetting"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:drawableLeft="@drawable/question"-->
+<!--            android:drawableRight="@drawable/next"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:gravity="left|center"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Cài đặt"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16dp"-->
+<!--            app:backgroundTint="@null" />-->
 
         <View
             android:layout_width="match_parent"

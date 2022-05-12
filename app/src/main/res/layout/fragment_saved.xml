@@ -47,18 +47,22 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tablayoutSaved"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/grey"
-            app:tabIndicatorColor="@color/black"
-            app:tabSelectedTextColor="@color/black" />
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--            android:id="@+id/tablayoutSaved"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/grey"-->
+<!--            app:tabIndicatorColor="@color/black"-->
+<!--            app:tabSelectedTextColor="@color/black" />-->
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpagerSaved"
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/viewpagerSaved"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+        <ListView
+            android:id="@+id/listViewSaved"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

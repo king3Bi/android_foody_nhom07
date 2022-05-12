@@ -6,6 +6,12 @@ public class Booking {
     private int foodId;
     private int quantity;
 
+    public Booking(int userId, int foodId, int quantity) {
+        this.userId = userId;
+        this.foodId = foodId;
+        this.quantity = quantity;
+    }
+
     public Booking(int id, int userId, int foodId, int quantity) {
         this.id = id;
         this.userId = userId;

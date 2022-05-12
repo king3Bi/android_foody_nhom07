@@ -4,33 +4,26 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.adapter.CustomRecyclerViewAdapter;
-import hcmute.nhom7.foody.database.Database;
-import hcmute.nhom7.foody.database.QuanDAO;
-import hcmute.nhom7.foody.model.Quan;
-import hcmute.nhom7.foody.view.MainActivity;
-import hcmute.nhom7.foody.view.NavigationActivity;
+import hcmute.nhom7.foody.model.Restaurant;
 
 public class RecentFragment extends Fragment {
 
     public static final String LOG_TAG = "AndroidExample";
     private RecyclerView recyclerView;
-    private List<Quan> itemList;
+    private List<Restaurant> itemList;
 
-    public RecentFragment(List<Quan> quans) {
-        this.itemList = quans;
+    public RecentFragment(List<Restaurant> restaurants) {
+        this.itemList = restaurants;
     }
 
     @Override

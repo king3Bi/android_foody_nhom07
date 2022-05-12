@@ -15,13 +15,13 @@ import java.util.List;
 
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.adapter.CustomRecyclerViewAdapter;
-import hcmute.nhom7.foody.model.Quan;
+import hcmute.nhom7.foody.model.Restaurant;
 
 public class NearByFragment extends Fragment {
 
     public static final String LOG_TAG = "AndroidExample";
     private RecyclerView recyclerView;
-    List<Quan> itemList;
+    List<Restaurant> itemList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,25 +36,25 @@ public class NearByFragment extends Fragment {
         return view;
     }
 
-    private List<Quan> getListData() {
-        List<Quan> list = new ArrayList<Quan>();
-        Quan pumpumtea = new Quan("milktea", "Pum Pum Tea", "Comment comment", "Delivery");
-        Quan korean = new Quan("korean", "Korean Food", "Great!!!", "Review");
-        Quan gogi = new Quan("gogi", "Gogi House", "Great!!!", "Review");
-        Quan koithe = new Quan("koi", "Koi Thé", "Great!!!", "Review");
-        Quan hadilao = new Quan("hadilao", "Hadilao", "Great!!!", "Review");
-        Quan quan1 = new Quan("japan", "Sushi House", "Great!!!", "Review");
-        Quan quan2 = new Quan("snowee", "Snowee", "Great!!!", "Review");
-        Quan quan3 = new Quan("drink", "Cocktail", "Great!!!", "Review");
+    private List<Restaurant> getListData() {
+        List<Restaurant> list = new ArrayList<Restaurant>();
+        Restaurant pumpumtea = new Restaurant("milktea", "Pum Pum Tea", "Comment comment", "Delivery");
+        Restaurant korean = new Restaurant("korean", "Korean Food", "Great!!!", "Review");
+        Restaurant gogi = new Restaurant("gogi", "Gogi House", "Great!!!", "Review");
+        Restaurant koithe = new Restaurant("koi", "Koi Thé", "Great!!!", "Review");
+        Restaurant hadilao = new Restaurant("hadilao", "Hadilao", "Great!!!", "Review");
+        Restaurant restaurant1 = new Restaurant("japan", "Sushi House", "Great!!!", "Review");
+        Restaurant restaurant2 = new Restaurant("snowee", "Snowee", "Great!!!", "Review");
+        Restaurant restaurant3 = new Restaurant("drink", "Cocktail", "Great!!!", "Review");
 
         list.add(pumpumtea);
         list.add(korean);
         list.add(gogi);
         list.add(koithe);
         list.add(hadilao);
-        list.add(quan1);
-        list.add(quan2);
-        list.add(quan3);
+        list.add(restaurant1);
+        list.add(restaurant2);
+        list.add(restaurant3);
 
         return list;
 

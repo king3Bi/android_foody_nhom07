@@ -3,15 +3,13 @@ package hcmute.nhom7.foody.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,27 +19,27 @@ import java.util.List;
 
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.database.HomeDAO;
-import hcmute.nhom7.foody.model.MonAn;
+import hcmute.nhom7.foody.model.Food;
 import hcmute.nhom7.foody.model.User;
-import hcmute.nhom7.foody.utils.ImageUtils;
+import hcmute.nhom7.foody.utils.ResourceUtils;
 
 public class ResultSearchFoodAdapter extends BaseAdapter {
     private Context context;
-    private List<MonAn> monAnList;
+    private List<Food> foodList;
     private int layout;
     private HomeDAO homeDAO;
     private User user;
 
-    public ResultSearchFoodAdapter(Context context, int layout, List<MonAn> monAnList, HomeDAO homeDAO, User user) {
+    public ResultSearchFoodAdapter(Context context, int layout, List<Food> foodList, HomeDAO homeDAO, User user) {
         this.context = context;
         this.layout = layout;
-        this.monAnList = monAnList;
+        this.foodList = foodList;
         this.homeDAO = homeDAO;
         this.user = user;
     }
     @Override
     public int getCount() {
-        return monAnList.size();
+        return foodList.size();
     }
 
     @Override
@@ -56,30 +54,35 @@ public class ResultSearchFoodAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        MonAn monAn =monAnList.get(i);
+        Food food = foodList.get(i);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(layout, null);
 
-        Bitmap imgBitMap = ImageUtils.decodeImg(monAn.getImage());
+        if (homeDAO.checkSavedFood(user.getId(), food.getId())) {
+            ImageView imgRemove = view.findViewById(R.id.imageViewSave);
+            imgRemove.setImageResource(ResourceUtils.getDrawableResIdByName(this.context, "check_icon_red"));
+        }
+
+//        Bitmap imgBitMap = ImageUtils.decodeImg(monAn.getImage());
 
         ImageView imageViewFood = (ImageView) view.findViewById(R.id.imageMonAn);
-        imageViewFood.setImageBitmap(imgBitMap);
+        imageViewFood.setImageBitmap(food.getBitMapImg());
 
         TextView textTenMonAn = (TextView) view.findViewById(R.id.textTenMonAn);
-        textTenMonAn.setText(monAn.getTenMonAn());
+        textTenMonAn.setText(food.getName());
 
         TextView textMota = (TextView) view.findViewById(R.id.textMoTa);
-        textMota.setText(monAn.getMoTa());
+        textMota.setText(food.getDescription());
 
         TextView textGia = (TextView) view.findViewById(R.id.textGia);
-        textGia.setText(monAn.getGia());
+        textGia.setText(food.getPriceString());
 
         LinearLayout layoutMonAn = (LinearLayout) view.findViewById(R.id.layoutMonAn);
         layoutMonAn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogBookFood(monAn);
+                DialogBookFood(user, food);
 
             }
         });
@@ -88,30 +91,40 @@ public class ResultSearchFoodAdapter extends BaseAdapter {
         imgSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Lưu món ăn", Toast.LENGTH_SHORT).show();
+                if (!homeDAO.checkSavedFood(user.getId(), food.getId())) {
+                    if (homeDAO.saveFood(user, food)) {
+                        ImageView imgRemove = view.findViewById(R.id.imageViewSave);
+                        imgRemove.setImageResource(ResourceUtils.getDrawableResIdByName(context, "check_icon_red"));
+                        Toast.makeText(context, "Lưu món ăn thành công!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Lưu món ăn không thành công!\n" +
+                                "Vui lòng thử lại sau.", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
         return view;
     }
 
-    private void DialogBookFood(MonAn monAn) {
+    private void DialogBookFood(User user, Food food) {
         Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_book_food);
 
         ImageView imgFood = dialog.findViewById(R.id.imageMonAnBook);
-        imgFood.setImageBitmap(monAn.getBitMapImg());
+        imgFood.setImageBitmap(food.getBitMapImg());
 
         TextView textTenMonAn = dialog.findViewById(R.id.textTenMonAnBook);
-        textTenMonAn.setText(monAn.getTenMonAn());
+        textTenMonAn.setText(food.getName());
 
         TextView textGiaMonAn = dialog.findViewById(R.id.textGiaBook);
-        textGiaMonAn.setText(monAn.getGia());
+        textGiaMonAn.setText(food.getPriceString());
 
         TextView textSoluong = dialog.findViewById(R.id.textSoLuong);
+        TextView textTongTien = dialog.findViewById(R.id.textTongTien);
 
-        Button btnBook = dialog.findViewById(R.id.btnBook);
+        ImageButton btnAddToCart = dialog.findViewById(R.id.btnAddToCart);
         Button btnHuy = dialog.findViewById(R.id.btnCancel);
 
         Button btnDecrease = (Button) dialog.findViewById(R.id.btnSub);
@@ -119,7 +132,10 @@ public class ResultSearchFoodAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 int soLuong = Integer.parseInt(textSoluong.getText().toString());
-                textSoluong.setText(Integer.toString(++soLuong));
+                if (soLuong == 0) {
+                    return;
+                }
+                textSoluong.setText(Integer.toString(--soLuong));
             }
         });
 
@@ -128,11 +144,11 @@ public class ResultSearchFoodAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 int soLuong = Integer.parseInt(textSoluong.getText().toString());
-                textSoluong.setText(Integer.toString(--soLuong));
+                textSoluong.setText(Integer.toString(++soLuong));
             }
         });
 
-        btnBook.setOnClickListener(new View.OnClickListener() {
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println(textSoluong.getText().toString());
@@ -142,7 +158,7 @@ public class ResultSearchFoodAdapter extends BaseAdapter {
                             "Số lượng phải khác 0",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    if(homeDAO.bookFood(user, monAn, soLuong)) {
+                    if(homeDAO.bookFood(user, food, soLuong)) {
                         Toast.makeText(context,
                                 "Đã đặt món.",
                                 Toast.LENGTH_SHORT).show();
