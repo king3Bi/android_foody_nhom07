@@ -33,7 +33,7 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = new Database(this);
+        db = new Database(NavigationActivity.this);
 
         user = (User) getIntent().getSerializableExtra("user");
 
@@ -126,9 +126,9 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        user = db.getUserById(user.getId());
         MoreFragment myFragment = (MoreFragment) getSupportFragmentManager().findFragmentByTag("moreFragment");
         if (myFragment != null && myFragment.isVisible()) {
+            user = db.getUserById(user.getId());
             replaceFragment(new MoreFragment(db, user), "moreFragment");
         }
     }

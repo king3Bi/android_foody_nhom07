@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import hcmute.nhom7.foody.R;
+import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.database.MoreDAO;
 import hcmute.nhom7.foody.model.User;
 import hcmute.nhom7.foody.view.LoginActivity;

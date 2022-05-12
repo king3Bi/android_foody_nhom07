@@ -59,13 +59,13 @@ public class HistoryAdapter extends BaseAdapter {
         textBillId.setText("Mã hóa đơn: " + bill.getId());
 
         TextView textAddress = view.findViewById(R.id.textAddressBill);
-        textAddress.setText(bill.getAddress());
+        textAddress.setText("Địa chỉ: " + bill.getAddress());
 
         TextView textPhoneNumber = view.findViewById(R.id.textPhoneNumberBill);
-        textPhoneNumber.setText(bill.getPhoneNumber());
+        textPhoneNumber.setText("SĐT: " + bill.getPhoneNumber());
 
         TextView textPrice = view.findViewById(R.id.textTotalPriceBill);
-        textPrice.setText(Double.toString(bill.getTotalPrice()));
+        textPrice.setText("Tổng tiền: " + Double.toString(bill.getTotalPrice()) + " VND");
 
         return view;
     }

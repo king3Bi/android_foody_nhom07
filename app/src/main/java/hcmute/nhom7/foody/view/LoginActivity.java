@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         //FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
 
-        loginDAO = new Database(this);
+        loginDAO = new Database(LoginActivity.this);
 
         SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
 

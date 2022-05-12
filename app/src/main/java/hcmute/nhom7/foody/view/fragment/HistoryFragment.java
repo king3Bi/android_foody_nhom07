@@ -14,6 +14,7 @@ import java.util.List;
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.adapter.CartAdapter;
 import hcmute.nhom7.foody.adapter.HistoryAdapter;
+import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.database.HistoryDAO;
 import hcmute.nhom7.foody.model.Bill;
 import hcmute.nhom7.foody.model.User;

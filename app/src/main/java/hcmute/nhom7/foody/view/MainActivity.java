@@ -12,16 +12,20 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import hcmute.nhom7.foody.R;
+import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.database.PrepareData;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView txtVersion;
+    private Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new Database(MainActivity.this);
 
         txtVersion = (TextView) findViewById(R.id.textVersion);
 

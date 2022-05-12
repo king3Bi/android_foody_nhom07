@@ -11,7 +11,7 @@ public interface SavedDAO {
     public List<Saved> getAllSavedOfUser(int userId);
     public List<Saved> getAllFoodSavedOfUser(int userId);
     public List<Saved> getAllRestaurantSavedOfUser(int userId);
-    public Food getFoodId(int id);
+    public Food getFoodById(int id);
     public boolean removeSaved(int userId, int foodId);
     public boolean bookFood(User user, Food food, int quantity);
 }

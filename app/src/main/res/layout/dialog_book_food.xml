@@ -5,81 +5,39 @@
     android:layout_gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:padding="30dp">
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageMonAnBook"
-            android:layout_marginRight="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/snowee"
-            android:layout_width="73dp"
-            android:layout_height="73dp"/>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textTenMonAnBook"
-                android:textColor="@color/black"
-                android:textSize="32dp"
-                android:textStyle="bold"
-                android:text="Món ăn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/textGiaBook"
+            <EditText
+                android:id="@+id/edtAddress"
                 android:textColor="@color/black"
                 android:textSize="23dp"
-                android:text="Giá: 0 VND"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:hint="Nhập địa chỉ"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:textSize="23dp"
-                    android:text="Số lượng:"/>
-                <Button
-                    android:id="@+id/btnSub"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:padding="0dp"
-                    android:text="-"
-                    android:background="@drawable/background_circle"
-                    app:backgroundTint="@null"/>
-                <EditText
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:id="@+id/textSoLuong"
-                    android:inputType="number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"/>
-                <Button
-                    android:id="@+id/btnAdd"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:padding="0dp"
-                    android:background="@drawable/background_circle"
-                    app:backgroundTint="@null"
-                    android:text="+"/>
-            </LinearLayout>
+            <EditText
+                android:id="@+id/edtPhone"
+                android:hint="Nhập số điện thoại"
+                android:textSize="23dp"
+                android:inputType="phone"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
 
             <TextView
-                android:id="@+id/textTongTien"
+                android:id="@+id/textTongTienBookDia"
                 android:text="Tổng tiền: 0 VND"
                 android:textSize="23dp"
                 android:layout_marginBottom="10dp"
@@ -90,16 +48,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/btnAddToCart"
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/btnBookOK"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/cart_icon"
-                    android:background="@drawable/background_circle_orange"/>
+                    android:text="Đặt"
+                    android:textStyle="bold"
+                    android:background="@drawable/background_circle_orange"
+                    app:backgroundTint="@null"/>
 
                 <Button
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/btnCancel"
+                    android:id="@+id/btnCancelBook"
                     android:text="Hủy"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"

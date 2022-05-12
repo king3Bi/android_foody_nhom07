@@ -13,7 +13,7 @@ public interface HomeDAO {
     public Restaurant getQuanById(int id);
     public boolean insertQuan(Restaurant restaurant);
     public boolean updateQuan(Restaurant restaurant);
-    public boolean bookFood(User user, Food food, int quantity);
+    public boolean addFoodToCart(User user, Food food, int quantity);
     public boolean saveFood(User user, Food food);
     public boolean checkSavedFood(int userId, int foodId);
 }

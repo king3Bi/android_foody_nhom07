@@ -98,8 +98,8 @@ public class DetailActivity extends AppCompatActivity {
 
         txtTenQuan.setText(restaurant.getName());
         txtTitleToolbar.setText(restaurant.getName());
-//        imgQuan.setImageResource(getDrawableResIdByName(quan.getImage()));
-        imgQuan.setImageBitmap(restaurant.getBitMapImg());
+        imgQuan.setImageResource(getDrawableResIdByName(restaurant.getImage()));
+//        imgQuan.setImageBitmap(restaurant.getBitMapImg());
         if(restaurant.getType().equals(getString(R.string.Delivery))){
             layoutMenu.setVisibility(View.VISIBLE);
         }

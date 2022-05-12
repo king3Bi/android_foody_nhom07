@@ -12,12 +12,13 @@ public class Food {
     private double price;
     private int restaurantId;
 
-    public Food(int id, String image, String name, String description, double price) {
+    public Food(int id, String image, String name, String description, double price, int restaurantId) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.restaurantId = restaurantId;
     }
 
     public Food(String image, String name, String description, double price, int restaurantId) {

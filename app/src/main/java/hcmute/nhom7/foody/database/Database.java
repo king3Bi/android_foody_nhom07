@@ -26,6 +26,7 @@ import hcmute.nhom7.foody.model.User;
 
 public class Database extends SQLiteOpenHelper
         implements UserDAO, QuanDAO, FoodDAO, SavedDAO, MoreDAO, HomeDAO, LoginDAO, SignupDAO, CartDAO, HistoryDAO {
+    private static Database mInstance = null;
     public static final String DATABASE_NAME = "foody_db.db";
     public static final int VERSION= 1;
     private Context context;
@@ -41,6 +42,13 @@ public class Database extends SQLiteOpenHelper
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+    }
+
+    public static Database getInstance(Context ctx) {
+        if (mInstance == null) {
+            mInstance = new Database(ctx.getApplicationContext());
+        }
+        return mInstance;
     }
 
     @Override
@@ -196,16 +204,16 @@ public class Database extends SQLiteOpenHelper
     }
 
     @Override
-    public boolean bookFood(User user, Food food, int quantity) {
-        String sql = "INSERT INTO bookings(user_id, food_id, quantity)" +
+    public boolean addFoodToCart(User user, Food food, int quantity) {
+        String sql = "INSERT INTO bookings(user_id, food_id, quantity) " +
                 "VALUES(?, ?, ?)";
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         try {
             sqLiteDatabase.execSQL(sql,
-                    new String[] {Integer.toString(user.getId()),
-                            Integer.toString(food.getId()), Integer.toString(quantity)});
+                    new Object[] {user.getId(),
+                            food.getId(), quantity});
             System.out.println("Booking successfully");
         } catch (Exception e) {
             e.printStackTrace();
@@ -248,7 +256,7 @@ public class Database extends SQLiteOpenHelper
             String description = result.getString(3);
             Double price = result.getDouble(4);
             int restaurantId = result.getInt(5);
-            foods.add(new Food(image, name, description, price, restaurantId));
+            foods.add(new Food(id, image, name, description, price, restaurantId));
         }
 
         return  foods;
@@ -268,7 +276,7 @@ public class Database extends SQLiteOpenHelper
             String image = result.getString(3);
             String description = result.getString(4);
             Double price = result.getDouble(5);
-            foods.add(new Food(image, name, description, price, restaurantId));
+            foods.add(new Food(id, image, name, description, price, restaurantId));
         }
 
         return  foods;
@@ -280,7 +288,7 @@ public class Database extends SQLiteOpenHelper
     }
 
     @Override
-    public Food getFoodId(int id) {
+    public Food getFoodById(int id) {
         Food food = null;
 
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
@@ -288,11 +296,13 @@ public class Database extends SQLiteOpenHelper
         Cursor result = sqLiteDatabase.rawQuery(sql, new String[]{Integer.toString(id)});
 
         if (result.moveToNext()) {
+            System.out.println("Da tim thay food Id: " + id);
             String name = result.getString(1);
             String image = result.getString(2);
             String description = result.getString(3);
             Double price = result.getDouble(4);
-            food = new Food(id, image, name, description, price);
+            int restaurantId = result.getInt(5);
+            food = new Food(id, image, name, description, price, restaurantId);
         }
 
         return  food;
@@ -389,6 +399,11 @@ public class Database extends SQLiteOpenHelper
     }
 
     @Override
+    public boolean bookFood(User user, Food food, int quantity) {
+        return false;
+    }
+
+    @Override
     public boolean checkSavedFood(int userId, int foodId) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String sql = "SELECT * FROM saveds WHERE user_id = ? AND food_id = ?";
@@ -465,7 +480,8 @@ public class Database extends SQLiteOpenHelper
             String image = result.getString(2);
             String description = result.getString(3);
             Double price = result.getDouble(4);
-            foods.add(new Food(id, image, name, description, price));
+            int restaurantId = result.getInt(5);
+            foods.add(new Food(id, image, name, description, price, restaurantId));
         }
 
         return foods;
@@ -510,8 +526,8 @@ public class Database extends SQLiteOpenHelper
 
         while (result.moveToNext()) {
             int id = result.getInt(0);
-            int foodId = result.getInt(1);
-            int quantity = result.getInt(2);
+            int foodId = result.getInt(2);
+            int quantity = result.getInt(4);
             bookingList.add(new Booking(id, user.getId(), foodId, quantity));
         }
 
@@ -528,8 +544,9 @@ public class Database extends SQLiteOpenHelper
 
         while (result.moveToNext()) {
             int id = result.getInt(0);
-            int foodId = result.getInt(1);
-            int quantity = result.getInt(2);
+            int foodId = result.getInt(2);
+            int quantity = result.getInt(4);
+            System.out.println("Booking: " + id + "-" + user.getId() + "-" + foodId + "-" + quantity);
             bookingList.add(new Booking(id, user.getId(), foodId, quantity));
         }
 

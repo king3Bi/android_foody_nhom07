@@ -14,17 +14,23 @@ import java.util.List;
 
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.adapter.CustomRecyclerFoodViewAdapter;
+import hcmute.nhom7.foody.database.HomeDAO;
 import hcmute.nhom7.foody.model.Food;
 import hcmute.nhom7.foody.model.Restaurant;
+import hcmute.nhom7.foody.model.User;
 
 public class FoodFragment extends Fragment {
 
     public static final String LOG_TAG = "AndroidExample";
     private RecyclerView recyclerView;
+    private User user;
+    private HomeDAO homeDAO;
     List<Food> itemList;
 
-    public FoodFragment(List<Food> foodList) {
+    public FoodFragment(User user, List<Food> foodList, HomeDAO homeDAO) {
+        this.user = user;
         this.itemList = foodList;
+        this.homeDAO = homeDAO;
     }
 
     @Override
@@ -35,7 +41,7 @@ public class FoodFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerViewNearBy);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        recyclerView.setAdapter(new CustomRecyclerFoodViewAdapter(getContext(), this.itemList));
+        recyclerView.setAdapter(new CustomRecyclerFoodViewAdapter(getContext(), this.itemList, user, homeDAO));
 
         return view;
     }

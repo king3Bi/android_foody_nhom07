@@ -8,6 +8,6 @@ public interface FoodDAO {
     public List<Food> getAllFood();
     public List<Food> getFoodByRestaurantId(int id);
     public List<Food> findFoodByName(String name);
-    public Food getFoodId(int id);
+    public Food getFoodById(int id);
     public boolean insertFood(Food food);
 }

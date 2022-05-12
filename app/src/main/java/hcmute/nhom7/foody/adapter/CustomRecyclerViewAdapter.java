@@ -44,11 +44,11 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Restaurant restaurant = this.restaurantList.get(position);
 
-//        int imageResId = this.getDrawableResIdByName(quan.getImage());
+        int imageResId = this.getDrawableResIdByName(restaurant.getImage());
 //        Bitmap imgResBitMap = ImageUtils.decodeImg(quan.getImage());
 
-//        holder.imgQuan.setImageResource(imageResId);
-        holder.imgQuan.setImageBitmap(restaurant.getBitMapImg());
+        holder.imgQuan.setImageResource(imageResId);
+//        holder.imgQuan.setImageBitmap(restaurant.getBitMapImg());
         holder.txtTenQuan.setText(restaurant.getName());
         holder.txtComment.setText(restaurant.getComment());
         holder.txtType.setText(restaurant.getType());

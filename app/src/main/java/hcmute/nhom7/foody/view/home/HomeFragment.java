@@ -21,6 +21,7 @@ import java.util.List;
 import hcmute.nhom7.foody.R;
 import hcmute.nhom7.foody.adapter.ResultSearchFoodAdapter;
 import hcmute.nhom7.foody.adapter.ViewPagerAdapterHome;
+import hcmute.nhom7.foody.database.Database;
 import hcmute.nhom7.foody.database.HomeDAO;
 import hcmute.nhom7.foody.model.Food;
 import hcmute.nhom7.foody.model.Restaurant;
@@ -60,7 +61,7 @@ public class HomeFragment extends Fragment {
         mTabLayout = mView.findViewById(R.id.tablayoutHome);
         mViewPager = mView.findViewById(R.id.viewpagerHome);
         mEdtSearchText = mView.findViewById(R.id.textSearch);
-        adapterHome = new ViewPagerAdapterHome(this, restaurants, foods);
+        adapterHome = new ViewPagerAdapterHome(this, user, restaurants, foods, homeDAO);
         mViewPager.setAdapter(adapterHome);
 
         new TabLayoutMediator(mTabLayout, mViewPager, (tab, position) -> {

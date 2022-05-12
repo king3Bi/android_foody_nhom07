@@ -42,11 +42,11 @@ public class ItemMenuAdapter extends RecyclerView.Adapter<ItemMenuAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Food food = this.foodList.get(position);
 
-//        int imageResId = this.getDrawableResIdByName(monAn.getImage());
-        Bitmap imgBitmap = ImageUtils.decodeImg(food.getImage());
+        int imageResId = this.getDrawableResIdByName(food.getImage());
+//        Bitmap imgBitmap = ImageUtils.decodeImg(food.getImage());
 
-//        holder.imgMonAn.setImageResource(imageResId);
-        holder.imgMonAn.setImageBitmap(imgBitmap);
+        holder.imgMonAn.setImageResource(imageResId);
+//        holder.imgMonAn.setImageBitmap(imgBitmap);
         System.out.println("Ten mon an: " + food.getName());
         holder.txtTenMonAn.setText(food.getName());
         holder.txtMoTa.setText(food.getDescription());

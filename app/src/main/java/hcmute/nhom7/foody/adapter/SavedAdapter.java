@@ -58,7 +58,7 @@ public class SavedAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         Saved saved = savedList.get(i);
-        Food food = savedDAO.getFoodId(saved.getFoodId());
+        Food food = savedDAO.getFoodById(saved.getFoodId());
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(layout, null);
@@ -106,7 +106,7 @@ public class SavedAdapter extends BaseAdapter {
     private void DialogBookFood(User user, Food food) {
         Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_book_food);
+        dialog.setContentView(R.layout.dialog_add_food_to_cart);
 
         ImageView imgFood = dialog.findViewById(R.id.imageMonAnBook);
         imgFood.setImageBitmap(food.getBitMapImg());
@@ -118,7 +118,7 @@ public class SavedAdapter extends BaseAdapter {
         textGiaMonAn.setText(food.getPriceString());
 
         TextView textSoluong = dialog.findViewById(R.id.textSoLuong);
-        TextView textTongTien = dialog.findViewById(R.id.textTongTien);
+//        TextView textTongTien = dialog.findViewById(R.id.textTongTien);
 
         Button btnBook = dialog.findViewById(R.id.btnBook);
         Button btnHuy = dialog.findViewById(R.id.btnCancel);

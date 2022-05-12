@@ -24,6 +24,7 @@ import hcmute.nhom7.foody.database.SavedDAO;
 import hcmute.nhom7.foody.model.Booking;
 import hcmute.nhom7.foody.model.Food;
 import hcmute.nhom7.foody.model.User;
+import hcmute.nhom7.foody.utils.ImageUtils;
 import hcmute.nhom7.foody.utils.ResourceUtils;
 
 public class CartAdapter extends BaseAdapter {
@@ -61,19 +62,25 @@ public class CartAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         Booking booking = bookingList.get(i);
-        Food food = cartDAO.getFoodId(booking.getFoodId());
+        Food food = cartDAO.getFoodById(booking.getFoodId());
+        System.out.println("Booking food id: " + booking.getFoodId());
+        System.out.println("Food id: " + food);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(layout, null);
+
+        int idRes = ImageUtils.getIdImgFromDrawable(context, food.getImage());
+        ImageView imageViewFood = view.findViewById(R.id.imageMonAnBooking);
+        imageViewFood.setImageResource(idRes);
 
         TextView textTenMonAn = view.findViewById(R.id.textTenMonAnBooking);
         textTenMonAn.setText(food.getName());
 
         TextView textSoLuong = view.findViewById(R.id.textSoLuongBooking);
-        textSoLuong.setText(Integer.toString(booking.getQuantity()));
+        textSoLuong.setText("Số lượng: " + Integer.toString(booking.getQuantity()));
 
         TextView textGia = view.findViewById(R.id.textGiaBooking);
-        textGia.setText(food.getPriceString());
+        textGia.setText("Giá: " + food.getPriceString());
 
         CheckBox checkBox = view.findViewById(R.id.checkboxBooking);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
